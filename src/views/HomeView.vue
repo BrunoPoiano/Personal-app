@@ -1,14 +1,13 @@
 
 <template>
   <div>
-    <Table :content="weigths" />
- 
+    <add-weight  @refreshTable='getWeights' />
+    <Table :content="weigths" @deleteITem="deleteITem" />
     <pagination
       :pagination="pagination"
       @currentPage="currentPage"
       @perPage="perPage"
     />
-
     <!-- <color /> -->
   </div>
 </template>
@@ -18,8 +17,9 @@ import { onMounted } from "vue";
 import Pagination from "@/components/global/Pagination.vue";
 import Color from "@/components/global/Color.vue";
 import Table from "@/components/Home/Table/index.vue";
+import AddWeight from "@/components/Home/AddWeight/index.vue";
 export default {
-  components: { Pagination, Color, Table },
+  components: { Pagination, Color, Table, AddWeight },
   data() {
     return {
       weigths: [],
@@ -59,6 +59,11 @@ export default {
           this.pagination.to = data.to;
         });
     },
+    deleteITem(itemId){
+      this.axios.delete(`weight/${itemId}`).then(() => {
+        this.getWeights()
+      })
+    }
   },
   mounted() {
     console.log("aqui mounted");

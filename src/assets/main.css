@@ -164,25 +164,36 @@ a {
   border-radius: var(--border-radius);
   border: none;
 
-  font-size: var(--font-size-base);
   background: var(--accent-color-80);
 
-  &:hover {
+  /* &:hover {
     background: var(--accent-color-10);
+  } */
+}
+
+.input {
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  padding: 8px 10px;
+  border: 1px solid var(--accent-color-80);
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-color-70);
   }
 }
 
-.table-container {
-  display: grid;
-  place-items: center;
+.button{
+  min-width: 80px;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  padding: 8px 10px;
+  border: none;
+  background: var(--accent-color-80);
+  cursor: pointer;
+  
+  transition: all 100ms ease-in;
 
-  & table {
-    & thead {
-
-      & tr {
-        padding: 10px;
-        background: red;
-      }
-    }
+  &:hover {
+    background: var(--accent-color-10);
   }
 }

@@ -1,41 +1,41 @@
 <template>
-<div class="app-container">
-  <header>
-    <div class="wrapper">
+  <div class="app-container">
+    <header>
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
-</div>
+    <RouterView />
+  </div>
 </template>
 
 <script>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <style scoped>
-
-.app-container{
+.app-container {
   padding: 20px;
-  
-  & .wrapper{
+  display: grid;
+  place-items: center;
+  > * {
+    max-width: 100ch;
+    width: 100%;
+  }
 
-    display: grid;
-    place-items:center;
-
+  & .wrapper {
     margin-block: 2rem;
 
-    & nav{
+    & nav {
       display: flex;
-      gap:10px;
+      place-items:center;
+      justify-content: center;
+      gap: 10px;
     }
   }
 }
-
-
 </style>
