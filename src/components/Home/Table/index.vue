@@ -35,8 +35,8 @@ export default {
       return formattedDate;
     }
 
-    function deleleItem(item){
-      context.emit('deleteITem', item.id)
+    function deleleItem(item) {
+      context.emit("deleteITem", item.id);
     }
 
     return {
@@ -51,6 +51,10 @@ export default {
 .table-container {
   display: grid;
   place-items: center;
+
+  max-height: 30rem;
+  height: 100%;
+  overflow-y: auto;
 }
 .responsive-table {
   max-width: 80ch;
@@ -68,6 +72,9 @@ export default {
     box-shadow: 0px 0px 9px 0px var(--neutral-color-85);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+
+    position: sticky;
+    top: 0;
   }
   & .table-row {
     background-color: var(--attention-color-100);
