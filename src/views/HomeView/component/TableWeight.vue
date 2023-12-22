@@ -1,15 +1,12 @@
 
 <template>
-  <div>
-    <add-weight  @refreshTable='getWeights' />
-    <Table :content="weigths" @deleteITem="deleteITem" />
-    <pagination
+    <add-weight class="center right-full"  @refreshTable='getWeights' />
+    <Table class="center right-full" :content="weigths" @deleteITem="deleteITem" />
+    <pagination class="content right-full"
       :pagination="pagination"
       @currentPage="currentPage"
-      @perPage="perPage"
+      @perPage="perPage" 
     />
-    <!-- <color /> -->
-  </div>
 </template>
 
 <script>
@@ -25,7 +22,7 @@ export default {
       weigths: [],
       pagination: {
         current_page: 1,
-        from: 1,
+        from: 1, 
         last_page: 20,
         per_page: 10,
         to: 10,

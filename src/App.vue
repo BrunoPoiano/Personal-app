@@ -1,6 +1,6 @@
 <template>
-  <div class="app-container">
-    <header>
+  <div class="app-container main-grid">
+    <header class="center middle">
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
@@ -9,7 +9,7 @@
       </div>
     </header>
 
-    <RouterView />
+      <RouterView />
   </div>
 </template>
 
@@ -19,11 +19,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style scoped>
 .app-container {
-  padding: 20px;
-  display: grid;
-  place-items: center;
   > * {
-    max-width: 100ch;
     width: 100%;
   }
 
@@ -32,7 +28,7 @@ import { RouterLink, RouterView } from "vue-router";
 
     & nav {
       display: flex;
-      place-items:center;
+      place-items: center;
       justify-content: center;
       gap: 10px;
     }
