@@ -119,7 +119,7 @@ html {
       [left-start] 
         minmax(0, 1fr) 
           [center-start left-end] 
-            0px 
+            5px 
           [center-end right-start] 
         minmax(0, 1fr) 
       [right-end] 
@@ -267,6 +267,14 @@ a {
   &:focus {
     color: var(--accent-color-10);
   }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: var(--border-radius);
 }
 
 .select {
