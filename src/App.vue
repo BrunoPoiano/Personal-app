@@ -1,20 +1,37 @@
 <template>
   <div class="app-container main-grid">
-    <header class="center middle">
+    <header class="center middle" v-if="isLogged">
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
+          <a @click="handleLogOut">Logout</a>
         </nav>
       </div>
     </header>
 
-      <RouterView />
+    <RouterView />
   </div>
 </template>
 
-<script>
-import { RouterLink, RouterView } from "vue-router";
+<script setup>
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+
+let isLogged = ref(false);
+const router = useRouter();
+
+function handleLogOut() {
+  localStorage.removeItem("EXER_TOKEN");
+  localStorage.removeItem("EXER_USER");
+  router.go("/");
+}
+
+onMounted(() => {
+  if (localStorage.getItem("EXER_TOKEN")) {
+    isLogged.value = true;
+  }
+});
 </script>
 
 <style scoped>

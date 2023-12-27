@@ -99,7 +99,7 @@ html {
 }
 
 
-.main-grid{
+.main-grid {
   padding: 1rem;
 }
 
@@ -114,33 +114,13 @@ html {
   display: grid;
   gap: .8rem;
   grid-template-columns:
-  [full-width-start] 
-    minmax(var(--padding-inline), 1fr) 
-      [left-start] 
-        minmax(0, 1fr) 
-          [center-start left-end] 
-            5px 
-          [center-end right-start] 
-        minmax(0, 1fr) 
-      [right-end] 
-    minmax(var(--padding-inline), 1fr) 
-  [full-width-end];
+    [full-width-start] minmax(var(--padding-inline), 1fr) [left-start] minmax(0, 1fr) [center-start left-end] 5px [center-end right-start] minmax(0, 1fr) [right-end] minmax(var(--padding-inline), 1fr) [full-width-end];
 
   @media screen and (width < 750px) {
 
     padding: 0px;
     grid-template-columns:
-    [full-width-start] 
-      minmax(var(--padding-inline), 1fr) 
-        [content-start] 
-          minmax(0, var(--content-size)) 
-            [center-start] 
-              min(100% - (var(--padding-inline) * 2), var(--center-max-width)) 
-            [center-end] 
-          minmax(0, var(--content-size)) 
-        [content-end] 
-      minmax(var(--padding-inline), 1fr) 
-    [full-width-end];
+      [full-width-start] minmax(var(--padding-inline), 1fr) [content-start] minmax(0, var(--content-size)) [center-start] min(100% - (var(--padding-inline) * 2), var(--center-max-width)) [center-end] minmax(0, var(--content-size)) [content-end] minmax(var(--padding-inline), 1fr) [full-width-end];
   }
 }
 
@@ -156,7 +136,7 @@ html {
     place-self: start;
     width: 100%;
   }
-  
+
   .right-start {
     grid-column: right-start / right-end;
     place-self: start;
@@ -168,13 +148,13 @@ html {
     place-self: start;
     width: 100%;
   }
-  
+
   .left-full {
     grid-column: full-width-start / left-end;
     place-self: start;
     width: 100%;
   }
-  
+
   .left-start {
     grid-column: full-width-start / left-start;
     place-self: start;
@@ -186,7 +166,7 @@ html {
     place-self: start;
     width: 100%;
   }
-  
+
   .middle {
     grid-column: right-start / left-end;
     place-self: start;
@@ -196,12 +176,12 @@ html {
 
 @media screen and (width < 750px) {
 
-  
+
   .content {
     grid-column: content;
     width: 100%;
   }
-  
+
   .center {
     grid-column: center;
     place-self: start;
@@ -260,6 +240,7 @@ p {
 }
 
 a {
+  cursor: pointer;
   color: var(--neutral-color-10);
   text-decoration: none;
 

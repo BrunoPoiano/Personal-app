@@ -24,4 +24,16 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach(async (to, from, next) => {
+  const isAuthenticated = localStorage.getItem("EXER_TOKEN");
+
+  if (isAuthenticated && to.name === 'login') {
+    next({ name: 'home' });
+  } else if (!isAuthenticated && to.name !== 'login') {
+    next({ name: 'login' });
+  } else {
+    next();
+  }
+});
+
 export default router
