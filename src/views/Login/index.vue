@@ -1,26 +1,27 @@
 <template>
-  <div class="left-full login-wrapper">
-    <AboutView />
-  </div>
-  <div class="right-full login-wrapper">
-    <div class="card">
-      <h3>Login</h3>
-      <form @submit.prevent="handleLogin">
-        <input
-          class="input"
-          placeholder="email"
-          type="text"
-          v-model="form.email"
-        />
-        <input
-          class="input"
-          placeholder="password"
-          type="password"
-          v-model="form.password"
-        />
-
-        <button type="submit" class="button">Logar</button>
-      </form>
+  <div class="full-width">
+    <div class="left-full login-wrapper">
+      <AboutView />
+    </div>
+    <div class="right-full login-wrapper">
+      <div class="card">
+        <h3>Login</h3>
+        <form @submit.prevent="handleLogin">
+          <input
+            class="input"
+            placeholder="email"
+            type="text"
+            v-model="form.email"
+          />
+          <input
+            class="input"
+            placeholder="password"
+            type="password"
+            v-model="form.password"
+          />
+          <button type="submit" class="button">Logar</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

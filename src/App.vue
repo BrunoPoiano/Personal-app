@@ -1,16 +1,20 @@
 <template>
-  <div class="app-container main-grid">
-    <header class="center middle" v-if="isLogged">
-      <div class="wrapper">
+  <div class="app-container main-grid full-width-content">
+    <header class="full-width " v-if="isLogged">
+      <div class="wrapper full-width-content">
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
-          <a @click="handleLogOut">Logout</a>
+        </nav>
+        <nav>
+          <a class="logout" @click="handleLogOut">Logout</a>
         </nav>
       </div>
     </header>
 
-    <RouterView />
+    <div class="full-width-content app-content">
+      <RouterView />
+    </div>
   </div>
 </template>
 
@@ -40,15 +44,38 @@ onMounted(() => {
     width: 100%;
   }
 
+  & header {
+    padding: 2rem;
+    background: var(--accent-color-80);
+  }
+
   & .wrapper {
-    margin-block: 2rem;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
 
     & nav {
       display: flex;
       place-items: center;
-      justify-content: center;
       gap: 10px;
+
+      & a {
+        font-size: var(--font-size-md);
+        font-weight: 600;
+      }
+
+      & .logout {
+        color: var(--attention-color-40);
+
+        &:hover {
+          color: var(--attention-color-10);
+        }
+      }
     }
+  }
+
+  & .app-content {
+    padding: 20px;
   }
 }
 </style>

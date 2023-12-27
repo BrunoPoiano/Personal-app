@@ -99,12 +99,11 @@ html {
 }
 
 
-.main-grid {
-  padding: 1rem;
-}
+
 
 .main-grid,
 .full-width {
+
   --padding-inline: 1rem;
   --center-max-width: 500px;
   --breakout-max-width: 1200px;
@@ -114,9 +113,11 @@ html {
   display: grid;
   gap: .8rem;
   grid-template-columns:
-    [full-width-start] minmax(var(--padding-inline), 1fr) [left-start] minmax(0, 1fr) [center-start left-end] 5px [center-end right-start] minmax(0, 1fr) [right-end] minmax(var(--padding-inline), 1fr) [full-width-end];
+    [full-width-start] minmax(var(--padding-inline), 1fr) [left-start] minmax(0, 1fr) [center-start left-end] 0px [center-end right-start] minmax(0, 1fr) [right-end] minmax(var(--padding-inline), 1fr) [full-width-end];
 
   @media screen and (width < 750px) {
+
+    margin: 0px;
 
     padding: 0px;
     grid-template-columns:
@@ -126,6 +127,10 @@ html {
 
 
 .full-width {
+  grid-column: full-width;
+}
+
+.full-width-content {
   grid-column: full-width;
 }
 
@@ -168,7 +173,7 @@ html {
   }
 
   .middle {
-    grid-column: right-start / left-end;
+    grid-column: left-start / right-end;
     place-self: start;
     width: 100%;
   }

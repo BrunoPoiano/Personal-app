@@ -9,10 +9,15 @@
       </div>
     </div>
   </div>
+  <div class="full-width">
+    <Color />
+  </div>
 </template>
 
 <script setup>
+import axios from "@/axios";
 import { onMounted, onUnmounted } from "vue";
+import Color from "@/components/global/Color.vue";
 
 function angle(cx, cy, ex, ey) {
   const dy = ey - cy;
@@ -47,6 +52,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("mousemove", mousemoveHandler);
 });
+
+function checkAuth() {
+  axios.get("check-auth");
+}
 </script>
 
 
