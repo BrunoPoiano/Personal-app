@@ -1,10 +1,16 @@
 <template>
-  <div class="login-wrapper">
-      <AboutView />
-    <div class="login-form">
+  <div class="create-acount-wrapper">
+    <AboutView />
+    <div class="create-acount-form">
       <div class="card">
-        <h3>Login</h3>
+        <h3>Criar Conta</h3>
         <form @submit.prevent="handleLogin">
+          <input
+            class="input"
+            placeholder="name"
+            type="text"
+            v-model="form.name"
+          />
           <input
             class="input"
             placeholder="email"
@@ -17,10 +23,10 @@
             type="password"
             v-model="form.password"
           />
-          <button type="submit" class="button">Logar</button>
-        </form>
-        <RouterLink to="create-account">
           <button type="submit" class="button">Criar Conta</button>
+        </form>
+        <RouterLink to="login">
+          <button type="submit" class="button">login</button>
         </RouterLink>
       </div>
     </div>
@@ -41,14 +47,12 @@ export default {
     const handleLogin = (e) => {
       const params = {
         email: form.value.email,
+        name: form.value.name,
         password: form.value.password,
       };
 
-      axios.post("login", params).then(({ data }) => {
-        localStorage.setItem("EXER_TOKEN", data.token);
-        localStorage.setItem("EXER_USER", JSON.stringify(data.user));
-
-        router.go("/");
+      axios.post("create-user", params).then(({ data }) => {
+        // router.go("/login");
       });
     };
 
@@ -61,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-.login-wrapper {
+.create-acount-wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));

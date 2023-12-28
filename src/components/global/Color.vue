@@ -1,4 +1,5 @@
 <template>
+<div class="color-wrap">
   <div class="color">
     <div
       v-for="(color, index) in attentionColor()"
@@ -22,6 +23,7 @@
       :style="`background-color: ${color}`"
     ></div>
   </div>
+</div>
 </template>
 
 <script>
@@ -59,7 +61,7 @@ export default {
 <style>
 .color {
   display: flex;
-
+  flex-wrap: wrap;
   & > div {
     width: 50px;
     aspect-ratio: 1;

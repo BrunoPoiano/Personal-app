@@ -1,7 +1,7 @@
 <template>
-  <div class="app-container main-grid full-width-content">
-    <header class="full-width " v-if="isLogged">
-      <div class="wrapper full-width-content">
+  <div class="app-container">
+    <header v-if="isLogged">
+      <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
@@ -12,7 +12,7 @@
       </div>
     </header>
 
-    <div class="full-width-content app-content">
+    <div class="app-content">
       <RouterView />
     </div>
   </div>
@@ -40,6 +40,8 @@ onMounted(() => {
 
 <style scoped>
 .app-container {
+  display: grid;
+  place-items: center;
   > * {
     width: 100%;
   }
@@ -47,6 +49,12 @@ onMounted(() => {
   & header {
     padding: 2rem;
     background: var(--accent-color-80);
+    display: grid;
+    place-items: center;
+    & div {
+      max-width: 1500px;
+      width: 100%;
+    }
   }
 
   & .wrapper {
@@ -76,6 +84,10 @@ onMounted(() => {
 
   & .app-content {
     padding: 20px;
+    max-width: 1024px;
+    width: 100%;
+    display: grid;
+    place-items: center;
   }
 }
 </style>

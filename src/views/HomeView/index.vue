@@ -1,9 +1,11 @@
 
 <template>
-  <div class="full-width ">
-    <div class="card content left-full">teste teste teste</div>
-    <div class="card content left-start">teste teste teste</div>
-    <div class="card content left-end">teste teste teste</div>
+  <div class="home-content">
+    <div class="cards">
+      <div class="card two-columns">teste teste teste</div>
+      <div class="card">teste teste teste</div>
+      <div class="card">teste teste teste</div>
+    </div>
     <table-weight />
   </div>
 </template>
@@ -18,10 +20,35 @@ export default {
 
 
 <style scoped>
-.card {
-  padding: 20px;
-  border: 1px solid red;
+.home-content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
 
-  border-radius: var(--border-radius);
+   @media screen and (width < 860px) {
+        flex-wrap: wrap;
+      }
+
+  > div {
+    width: 100%;
+  }
+
+  & .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, max(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    & .card {
+      padding: 20px;
+      border: 1px solid red;
+      border-radius: var(--border-radius);
+      width: 100%;
+    }
+
+    & .two-columns {
+      grid-column: 1 / span 2;
+    }
+  }
 }
 </style>

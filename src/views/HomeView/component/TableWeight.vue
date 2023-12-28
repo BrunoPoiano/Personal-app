@@ -1,6 +1,6 @@
 
 <template>
-  <div class="center right-full">
+  <div>
     <add-weight @refreshTable="getWeights" />
     <Table :content="weigths" @deleteITem="deleteITem" />
     <pagination

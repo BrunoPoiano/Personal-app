@@ -1,6 +1,6 @@
 
 <template>
-  <div class="full-width hover-effect">
+  <div class="about-view hover-effect">
     <div class="photo left-end center">
       <img id="anchor" src="@/assets/me.png" alt="" />
       <div class="eyes">
@@ -8,8 +8,7 @@
         <div class="eye" style="top: 200px; right: 120px"></div>
       </div>
     </div>
-  </div>
-  <div class="full-width">
+
     <Color />
   </div>
 </template>
@@ -60,9 +59,6 @@ function checkAuth() {
 
 
 <style scoped>
-.hover-effect {
-  height: 50vh;
-}
 
 .photo {
   margin: 10px;

@@ -12,4 +12,23 @@ axiosInstance.interceptors.request.use(async (config) => {
   return config;
 });
 
+axiosInstance.interceptors.response.use(
+  
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("EXER_TOKEN");
+        localStorage.removeItem("EXER_USER");
+      }
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up the request:', error.message);
+    }
+    return Promise.reject(error);
+  }
+);
+
+
 export default axiosInstance;
