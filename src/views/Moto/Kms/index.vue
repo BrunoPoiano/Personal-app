@@ -1,6 +1,9 @@
 <template>
   <div class="km-page">
-    <km-modal @refreshTable="getKms" />
+    <div class="header">
+      <KmInfo :key="kminfo" />
+      <km-modal @refreshTable="getKms" />
+    </div>
     <KmTable :content="kms" />
     <Pagination
       :pagination="pagination"
@@ -16,11 +19,13 @@ import KmModal from "./components/KmModal.vue";
 import axios from "@/axios";
 import KmTable from "./components/KmTable/index.vue";
 import Pagination from "@/components/global/Pagination.vue";
+import KmInfo from "./components/KmInfo/index.vue";
 export default {
-  components: { KmModal, KmTable, Pagination },
+  components: { KmModal, KmTable, Pagination, KmInfo },
 
   setup() {
     const kms = ref([]);
+    const kminfo = ref(1);
 
     const pagination = ref({
       current_page: 1,
@@ -44,6 +49,8 @@ export default {
         pagination.value.per_page = data.per_page;
         pagination.value.total = data.total;
         pagination.value.to = data.to;
+
+        kminfo.value++
       });
     };
 
@@ -67,6 +74,7 @@ export default {
       perPage,
       currentPage,
       getKms,
+      kminfo,
     };
   },
 };
@@ -78,5 +86,13 @@ export default {
 
   display: grid;
   gap: 20px;
+
+  & .header{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    place-items:center;
+    gap: 1rem;
+  }
 }
+
 </style>
