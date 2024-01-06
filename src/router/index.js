@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView/index.vue'
 import Login from '../views/Login/index.vue'
 import AboutView from '../views/AboutView.vue'
 import CreateAccount from '../views/CreateAccount/index.vue'
+import MotoKms from '../views/Moto/Kms/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/moto/kms',
+      name: 'moto-kms',
+      component: MotoKms
     },
     {
       path: '/about',

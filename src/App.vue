@@ -4,7 +4,8 @@
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/moto/kms">Kilometragem</RouterLink>
+          <RouterLink to="/about">about</RouterLink>
         </nav>
         <nav>
           <a class="logout" @click="handleLogOut">Logout</a>

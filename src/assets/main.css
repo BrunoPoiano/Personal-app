@@ -40,6 +40,7 @@ html {
   --accent-soft-color-80: color-mix(in oklab, var(--mix-color) 80%, var(--accent-color-pure));
   --accent-soft-color-90: color-mix(in oklab, var(--mix-color) 90%, var(--accent-color-pure));
 
+  --neutral-color-05: color-mix(in oklab, var(--base-color) 05%, var(--mix-color));
   --neutral-color-10: color-mix(in oklab, var(--base-color) 10%, var(--mix-color));
   --neutral-color-15: color-mix(in oklab, var(--base-color) 15%, var(--mix-color));
   --neutral-color-20: color-mix(in oklab, var(--base-color) 20%, var(--mix-color));
@@ -101,7 +102,7 @@ html {
 
 
 
-.main-grid{
+.main-grid {
   display: grid;
   gap: .8rem;
 
@@ -176,6 +177,14 @@ img {
   border-radius: var(--border-radius);
 }
 
+dialog {
+  margin: auto;
+
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.42);
+}
+
 .select {
   font-size: var(--font-size-base);
   padding: 8px 10px;
@@ -215,4 +224,13 @@ img {
   &:hover {
     background: var(--accent-color-10);
   }
+
+  &[data-type='danger']{
+    background: var(--attention-color-60);
+
+    &:hover {
+      background: var(--attention-color-20);
+    }
+  }
+
 }
