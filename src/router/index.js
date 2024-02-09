@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView/index.vue'
 import Login from '../views/Login/index.vue'
 import AboutView from '../views/AboutView.vue'
+import TestView from '../views/TestView/index.vue'
 import CreateAccount from '../views/CreateAccount/index.vue'
 import MotoKms from '../views/Moto/Kms/index.vue'
 
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: TestView
     },
     {
       path: '/create-account',

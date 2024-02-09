@@ -6,6 +6,7 @@
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/moto/kms">Kilometragem</RouterLink>
           <RouterLink to="/about">about</RouterLink>
+          <RouterLink to="/test">Testes</RouterLink>
         </nav>
         <nav>
           <a class="logout" @click="handleLogOut">Logout</a>
