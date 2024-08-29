@@ -1,13 +1,7 @@
-
 <template>
-  <div class="home-content">
-    <div class="cards">
-      <div class="card two-columns">teste teste teste</div>
-      <div class="card">teste teste teste</div>
-      <div class="card">teste teste teste</div>
-    </div>
+  <main class="home-content">
     <table-weight />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -18,7 +12,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .home-content {
   display: flex;
@@ -26,9 +19,9 @@ export default {
   gap: 20px;
   width: 100%;
 
-   @media screen and (width < 860px) {
-        flex-wrap: wrap;
-      }
+  @media screen and (width < 860px) {
+    flex-wrap: wrap;
+  }
 
   > div {
     width: 100%;

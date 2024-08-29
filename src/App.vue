@@ -86,7 +86,7 @@ onMounted(() => {
 
   & .app-content {
     padding: 20px;
-    max-width: 1024px;
+    max-width: 1524px;
     width: 100%;
     display: grid;
     place-items: center;

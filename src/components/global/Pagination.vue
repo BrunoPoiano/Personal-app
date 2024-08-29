@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script >
+<script>
 import { onMounted, reactive, ref, watch } from "vue";
 export default {
   props: {
@@ -127,6 +127,7 @@ export default {
 .pagination-container {
   display: grid;
   place-items: center;
+  margin-top: 30px;
 }
 .pagination {
   display: grid;

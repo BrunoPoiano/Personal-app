@@ -1,14 +1,19 @@
-
 <template>
-  <div>
-    <add-weight @refreshTable="getWeights" />
-    <Table :content="weigths" @deleteITem="deleteITem" />
-    <pagination
-      :pagination="pagination"
-      @currentPage="currentPage"
-      @perPage="perPage"
-    />
-  </div>
+  <section v-if="!loading">
+    <div v-if="weigths.length > 0">
+      <LineChart :data="weigths" />
+    </div>
+    <div>
+      <add-weight @refreshTable="getWeights" />
+      <Table :content="weigths" @deleteITem="deleteITem" />
+      <pagination
+        :pagination="pagination"
+        @currentPage="currentPage"
+        @perPage="perPage"
+      />
+    </div>
+  </section>
+  <section v-else>Carregando ...</section>
 </template>
 
 <script>
@@ -17,11 +22,13 @@ import Pagination from "@/components/global/Pagination.vue";
 import Color from "@/components/global/Color.vue";
 import Table from "@/components/Home/Table/index.vue";
 import AddWeight from "@/components/Home/AddWeight/index.vue";
+import LineChart from "@/components/global/graphs/LineChart.vue";
 export default {
-  components: { Pagination, Color, Table, AddWeight },
+  components: { Pagination, Color, Table, AddWeight, LineChart },
   data() {
     return {
       weigths: [],
+      loading: false,
       pagination: {
         current_page: 1,
         from: 1,
@@ -42,6 +49,7 @@ export default {
       this.getWeights();
     },
     getWeights() {
+      this.loading = true;
       this.axios
         .get("/weight", {
           params: {
@@ -56,6 +64,9 @@ export default {
           this.pagination.per_page = data.per_page;
           this.pagination.total = data.total;
           this.pagination.to = data.to;
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
     deleteITem(itemId) {
@@ -71,8 +82,13 @@ export default {
 };
 </script>
 
-
 <style scoped>
+section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+}
 button {
   font-weight: bold;
 }
