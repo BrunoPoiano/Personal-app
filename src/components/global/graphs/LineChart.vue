@@ -1,16 +1,19 @@
 <template>
-  <LineChart
-    :data="lineData"
-    :tooltip="tooltip"
-    :gridlines="gridlines"
-    :animations="animations"
-    :gradient="gradient"
-    :xAxis="xAxis"
-    :yAxis="yAxis"
-    :smooth="smooth"
-    :width="600"
-    :height="400"
-  />
+  <div class="graph-box">
+    <h3>{{ title }}</h3>
+    <LineChart
+      :data="lineData"
+      :tooltip="tooltip"
+      :gridlines="gridlines"
+      :animations="animations"
+      :gradient="gradient"
+      :xAxis="xAxis"
+      :yAxis="yAxis"
+      :smooth="smooth"
+      :width="700"
+      :height="400"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -21,6 +24,9 @@ const props = defineProps({
   data: {
     default: [],
   },
+  title: {
+    default: "",
+  },
   tooltip: {
     default: false,
   },
@@ -28,7 +34,7 @@ const props = defineProps({
     default: true,
   },
   animations: {
-    default: true,
+    default: false,
   },
   gradient: {
     default: true,
@@ -44,8 +50,6 @@ const props = defineProps({
   },
 });
 
-console.log("aqui props.data", props.data);
-
 const lineData = ref([
   {
     color: "#41b883",
@@ -58,3 +62,16 @@ const lineData = ref([
   },
 ]);
 </script>
+
+<style scoped>
+.graph-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: grid;
+  div {
+    place-self: center;
+  }
+}
+</style>

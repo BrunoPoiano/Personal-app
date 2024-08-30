@@ -1,4 +1,5 @@
 <template>
+  <h2>Table Weight</h2>
   <main class="home-content">
     <table-weight />
   </main>

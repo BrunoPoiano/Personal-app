@@ -1,7 +1,9 @@
 <template>
-  <section v-if="!loading">
+  <section>
     <div v-if="weigths.length > 0">
-      <LineChart :data="weigths" />
+      <Loading :loading="loading">
+        <LineChart :data="weigths" title="Weight Graph" />
+      </Loading>
     </div>
     <div>
       <add-weight @refreshTable="getWeights" />
@@ -13,7 +15,6 @@
       />
     </div>
   </section>
-  <section v-else>Carregando ...</section>
 </template>
 
 <script>
@@ -23,8 +24,9 @@ import Color from "@/components/global/Color.vue";
 import Table from "@/components/Home/Table/index.vue";
 import AddWeight from "@/components/Home/AddWeight/index.vue";
 import LineChart from "@/components/global/graphs/LineChart.vue";
+import Loading from "@/components/global/Loading/index.vue";
 export default {
-  components: { Pagination, Color, Table, AddWeight, LineChart },
+  components: { Pagination, Color, Table, AddWeight, LineChart, Loading },
   data() {
     return {
       weigths: [],
