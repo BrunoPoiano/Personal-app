@@ -1,105 +1,171 @@
 <template>
-  <input type="file" @change="handleFileChange" />
-  <canvas ref="canvas" style="border: 1px solid black"></canvas>
+  <h1>Pure HTML CSS Form</h1>
+  <button v-on:click="injectValue">Inject value</button>
 
-  <div class="canva-ascii">
-    <div class="y-index" v-for="(y, key) in image" :key="key">
-      <div class="x-index" v-for="(i, index) in y" :key="index">
-        {{ i }}
+  <form v-on:submit.prevent="sendForm" id="testForm">
+    <fieldset>
+      <legend>form</legend>
+      <div>
+        <label>Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="name"
+          value="teste"
+        />
       </div>
-    </div>
-  </div>
+      <div>
+        <label for="">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="email"
+          tooltip="teste"
+        />
+      </div>
+      <div>
+        <label for="">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          placeholder="minimo 6 char"
+          :minlength="6"
+        />
+      </div>
+
+      <div>
+        <label for="select">select</label>
+        <select id="select" name="select" required placeholder="teste">
+          <option value="" selected>Please choose</option>
+
+          <option value="Mr">Mr</option>
+          <option value="Miss">Miss</option>
+          <option value="Mrs">Mrs</option>
+          <option value="Ms">Ms</option>
+
+          <option value="Dr">Dr</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="range">Input range</label>
+        <input
+          type="range"
+          id="range"
+          name="range"
+          min="0"
+          max="100"
+          value="50"
+          v-bind:on-change="updateValue()"
+        />
+        <p>Current Volume: <span id="rangeValue">50</span></p>
+      </div>
+
+      <div>
+        <label for="textarea">select</label>
+        <textarea
+          name="textarea"
+          id="textarea"
+          placeholder="textarea"
+          rows="10"
+          cols="30"
+          required
+        >
+        The cat was playing in the garden.
+    </textarea
+        >
+      </div>
+
+      <button type="submit">Enviar</button>
+    </fieldset>
+  </form>
 </template>
 
-<script >
+<script>
 export default {
-  data() {
-    return {
-      density: "Ñ@#W$9876543210?!abc;:+=-,._ ",
-      image: [],
-    };
-  },
   methods: {
-    handleFileChange(event) {
-      const file = event.target.files[0];
-      if (!file) return;
+    sendForm(e) {
+      e.preventDefault();
+      console.log("aqui e", e.target);
 
-      this.image = [];
+      const formData = new FormData(e.target);
+      console.log("aqui formData", formData);
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-
-          // Clear canvas
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-          const scale = 0.1; // Downscale factor
-          const scaledWidth = img.width * scale;
-          const scaledHeight = img.height * scale;
-
-          canvas.width = scaledWidth;
-          canvas.height = scaledHeight;
-
-          ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
-
-          const imageData = ctx.getImageData(0, 0, scaledWidth, scaledHeight);
-          this.processImageData(imageData);
-        };
-        img.src = reader.result;
-      };
-      reader.readAsDataURL(file);
+      const formObject = Object.fromEntries(formData);
+      console.log("aqui formObject", formObject);
     },
 
-    processImageData(imageData) {
-      const data = imageData.data;
-      const width = imageData.width;
-      const height = imageData.height;
+    updateValue(value) {
+      console.log("aqui value", value);
+      const form = document.getElementById("testForm");
+      // const inputElement = form.querySelector(`[name="rangeValue"]`);
+      // if (inputElement) {
+      //   inputElement.value = value;
+      // }
+    },
 
-      const blurAmount = 5;
-      for (let y = 0; y < height; y++) {
-        this.image[y] = [];
-        for (let i = 0; i < width; i++) {
-          const pixelIndex = (i + y * width) * 4;
-          const red = data[pixelIndex];
-          const green = data[pixelIndex + 1];
-          const blue = data[pixelIndex + 2];
+    injectValue() {
+      const formData = {
+        name: "JohnDoe",
+        email: "john@example.com",
+        password: "123",
+        select: "Dr",
+        textarea: "banana",
+        range: 74,
+      };
 
-          // Calculate luminance (grayscale)
-          const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+      const form = document.getElementById("testForm");
 
-          const charIndex = Math.floor(
-            (this.density.length - 1) * (luminance / 255)
-          );
-          const char = this.density.charAt(charIndex);
-
-          this.image[y][i] = char;
+      for (const [key, value] of Object.entries(formData)) {
+        const inputElement = form.querySelector(`[name="${key}"]`);
+        if (inputElement) {
+          inputElement.value = value;
         }
       }
-
-      const canvas = this.$refs.canvas;
-      const ctx = canvas.getContext("2d");
-      ctx.putImageData(imageData, 0, 0);
     },
   },
 };
 </script>
 
 <style scoped>
+form {
+  fieldset {
+    display: grid;
+    gap: 10px;
+    div {
+      display: grid;
+    }
+  }
 
-.canva-ascii{
-  margin-top: 10px;
-}
-.y-index {
+  input,
+  select,
+  textarea {
+    outline: 2px solid;
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline-color: grey;
+  }
+  input:not(:placeholder-shown):valid,
+  textarea:not(:placeholder-shown):valid,
+  select:not(:placeholder-shown):valid {
+    outline-color: green;
+  }
+  input:not(:placeholder-shown):invalid,
+  textarea:not(:placeholder-shown):invalid,
+  select:not(:placeholder-shown):invalid {
+    outline-color: red;
+  }
 
-  display: flex;
-  font-size: 2px;
-  background-color: #000;
-  font-family: "Courier";
-  color: #fff;
-  font-size: 12pt;
-  line-height: 6pt;
+  input:focus:invalid,
+  textarea:focus:invalid,
+  select:focus:invalid {
+    outline-color: grey;
+  }
 }
 </style>
