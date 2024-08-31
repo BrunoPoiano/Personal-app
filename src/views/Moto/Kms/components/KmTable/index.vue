@@ -10,18 +10,18 @@
     </thead>
     <tbody>
       <tr v-for="(item, index) in content" :key="index">
-        <td>{{item.id}}</td>
-        <td>{{item.km}}</td>
-        <td>{{item.liters}}</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.km }}</td>
+        <td>{{ item.liters }}</td>
         <td>
-          {{ (item.km / item.liters).toFixed(2)}}
+          {{ (item.km / item.liters).toFixed(2) }}
         </td>
       </tr>
     </tbody>
   </table>
 </template>
 
-<script >
+<script>
 export default {
   props: {
     content: {
@@ -52,13 +52,13 @@ th {
   border: 1px solid var(--accent-color-90);
   background-color: var(--accent-color-60);
   color: #000000;
-  padding: 5px;
+  padding: 5px 15px;
 }
 
 td {
   border: 1px solid var(--accent-color-90);
   background-color: var(--base-color);
   color: #000000;
-  padding: 5px;
+  padding: 5px 15px;
 }
 </style>

@@ -132,7 +132,7 @@ export default {
 .pagination {
   display: grid;
   gap: 10px;
-  max-width: 120ch;
+  max-width: 95ch;
   width: 100%;
 
   & .pagination-buttons {

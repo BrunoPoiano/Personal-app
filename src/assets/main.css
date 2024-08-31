@@ -99,15 +99,11 @@ html {
   --contact-background: var(--neutral-color-80);
 }
 
-
-
-
 .main-grid {
   display: grid;
   gap: .8rem;
 
 }
-
 
 body {
   background-color: var(--neutral-color-95);
@@ -232,5 +228,30 @@ dialog {
       background: var(--attention-color-20);
     }
   }
+}
 
+input,
+select,
+textarea {
+  outline: 2px solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline-color: grey;
+}
+input:not(:placeholder-shown):valid,
+textarea:not(:placeholder-shown):valid,
+select:not(:placeholder-shown):valid {
+  outline-color: green;
+}
+input:not(:placeholder-shown):invalid,
+textarea:not(:placeholder-shown):invalid,
+select:not(:placeholder-shown):invalid {
+  outline-color: red;
+}
+
+input:focus:invalid,
+textarea:focus:invalid,
+select:focus:invalid {
+  outline-color: grey;
+}
 }

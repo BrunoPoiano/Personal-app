@@ -102,7 +102,6 @@ export default {
     },
 
     updateValue(value) {
-      console.log("aqui value", value);
       const form = document.getElementById("testForm");
       // const inputElement = form.querySelector(`[name="rangeValue"]`);
       // if (inputElement) {

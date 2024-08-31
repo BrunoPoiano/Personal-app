@@ -1,26 +1,37 @@
 <template>
-  <button data-toggle-modal @click="OpenModal()" class="button">Adicionar kms</button>
+  <button data-toggle-modal @click="OpenModal()" class="button">
+    Adicionar kms
+  </button>
   <dialog data-modal>
     <h3>Nova Kilometragem</h3>
-    <form @submit.prevent>
+    <form v-on:submit.prevent="handleForm" id="kmLiterForm">
       <input
+        required
         class="input"
         type="number"
         step="0.01"
+        name="km"
         placeholder="Kms"
-        v-model="form.km"
       />
       <input
+        required
         class="input"
         type="number"
         step="0.01"
         placeholder="Litros"
-        v-model="form.liters"
+        name="liters"
       />
 
       <div>
-        <button class="button" @click="handleForm">Salvar</button>
-        <button class="button" data-type="danger"  @click="cancelForm">cancelar</button>
+        <button class="button" type="submit">Salvar</button>
+        <button
+          class="button"
+          data-type="danger"
+          type="cancel"
+          @click="cancelForm"
+        >
+          cancelar
+        </button>
       </div>
     </form>
   </dialog>
@@ -29,12 +40,7 @@
 <script setup>
 import axios from "@/axios";
 import { ref } from "vue";
-const emits = defineEmits(['refreshTable'])
-
-const form = ref({
-  km: "",
-  liters: "",
-});
+const emits = defineEmits(["refreshTable"]);
 
 const OpenModal = () => {
   const modal = document.querySelector("[data-modal]");
@@ -42,28 +48,39 @@ const OpenModal = () => {
 };
 
 const resetForm = () => {
-  form.value = {
-    km: "",
-    liters: "",
+  const formData = {
+    km: null,
+    liters: null,
   };
+
+  const form = document.getElementById("kmLiterForm");
+
+  for (const [key, value] of Object.entries(formData)) {
+    const inputElement = form.querySelector(`[name="${key}"]`);
+    if (inputElement) {
+      inputElement.value = value;
+    }
+  }
 };
 
-const handleForm = () => {
+const handleForm = (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const formObject = Object.fromEntries(formData);
+
   axios
-    .post("moto/kms", {
-      ...form.value,
-    })
+    .post("moto/kms", formObject)
     .then(() => {
       resetForm();
     })
     .finally(() => {
-      emits('refreshTable')
-    })
+      emits("refreshTable");
+    });
 };
 
 const cancelForm = () => {
-  const modal = document.querySelector("[data-modal]");
   resetForm();
+  const modal = document.querySelector("[data-modal]");
   modal.close();
 };
 </script>

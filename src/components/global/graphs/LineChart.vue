@@ -1,77 +1,56 @@
 <template>
   <div class="graph-box">
-    <h3>{{ title }}</h3>
-    <LineChart
-      :data="lineData"
-      :tooltip="tooltip"
-      :gridlines="gridlines"
-      :animations="animations"
-      :gradient="gradient"
-      :xAxis="xAxis"
-      :yAxis="yAxis"
-      :smooth="smooth"
-      :width="700"
-      :height="400"
-    />
+    <canvas ref="chartCanvas"></canvas>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { LineChart } from "vue-graphs";
+<script>
+import Chart from "chart.js/auto"; // Import Chart.js
+import { shallowRef } from "vue";
 
-const props = defineProps({
-  data: {
-    default: [],
+export default {
+  name: "MyChart",
+  props: {
+    chartData: {
+      default: {},
+    },
+    chartOptions: {
+      default: {
+        interaction: {
+          intersect: false,
+          mode: "index",
+        },
+      },
+    },
   },
-  title: {
-    default: "",
+  data() {
+    return {
+      chartInstance: shallowRef(null),
+    };
   },
-  tooltip: {
-    default: false,
-  },
-  gridlines: {
-    default: true,
-  },
-  animations: {
-    default: false,
-  },
-  gradient: {
-    default: true,
-  },
-  xAxis: {
-    default: true,
-  },
-  yAxis: {
-    default: true,
-  },
-  smooth: {
-    default: true,
-  },
-});
 
-const lineData = ref([
-  {
-    color: "#41b883",
-    values: props.data.map((el) => {
-      return {
-        y: el.weight,
-        x: el.id,
-      };
-    }),
+  methods: {
+    renderChart() {
+      const ctx = this.$refs.chartCanvas.getContext("2d");
+
+      this.chartInstance = new Chart(ctx, {
+        type: "line",
+        data: this.chartData,
+        options: this.chartOptions,
+      });
+    },
   },
-]);
+  mounted() {
+    this.renderChart();
+  },
+};
 </script>
-
 <style scoped>
 .graph-box {
-  background: #fff;
-  padding: 20px;
-  border-radius: var(--border-radius);
-  overflow: hidden;
   display: grid;
-  div {
-    place-self: center;
-  }
+  place-items: center;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  padding: 20px;
 }
 </style>

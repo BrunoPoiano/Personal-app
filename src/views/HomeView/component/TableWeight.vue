@@ -1,8 +1,8 @@
 <template>
   <section>
-    <div v-if="weigths.length > 0">
+    <div>
       <Loading :loading="loading">
-        <LineChart :data="weigths" title="Weight Graph" />
+        <LineChart :chartData="chartData" />
       </Loading>
     </div>
     <div>
@@ -29,6 +29,7 @@ export default {
   components: { Pagination, Color, Table, AddWeight, LineChart, Loading },
   data() {
     return {
+      chartData: {},
       weigths: [],
       loading: false,
       pagination: {
@@ -66,6 +67,27 @@ export default {
           this.pagination.per_page = data.per_page;
           this.pagination.total = data.total;
           this.pagination.to = data.to;
+
+          let graphLabel = [];
+          let graphData = [];
+
+          data.data.forEach((el) => {
+            graphLabel.push(el.id);
+            graphData.push(el.weight);
+          });
+
+          this.chartData = {
+            labels: graphLabel.reverse(),
+            datasets: [
+              {
+                label: "Weight",
+                data: graphData.reverse(),
+                backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+                borderColor: ["rgba(255, 99, 132, 1)"],
+                borderWidth: 1,
+              },
+            ],
+          };
         })
         .finally(() => {
           this.loading = false;
@@ -78,7 +100,6 @@ export default {
     },
   },
   mounted() {
-    console.log("aqui mounted");
     this.getWeights();
   },
 };
