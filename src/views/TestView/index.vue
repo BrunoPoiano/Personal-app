@@ -4,7 +4,7 @@
 
   <form v-on:submit.prevent="sendForm" id="testForm">
     <fieldset>
-      <legend>form</legend>
+      <!-- <legend>form</legend> -->
       <div>
         <label>Name</label>
         <input
@@ -34,7 +34,7 @@
           type="password"
           required
           placeholder="minimo 6 char"
-          :minlength="6"
+          minlength="6"
         />
       </div>
 
@@ -62,9 +62,18 @@
           min="0"
           max="100"
           value="50"
-          v-bind:on-change="updateValue()"
         />
-        <p>Current Volume: <span id="rangeValue">50</span></p>
+      </div>
+
+      <div>
+        <label for="">checkbox</label>
+        <input
+          type="checkbox"
+          id="checkbox"
+          name="checkbox"
+          value="true"
+          required
+        />
       </div>
 
       <div>
@@ -76,13 +85,11 @@
           rows="10"
           cols="30"
           required
-        >
-        The cat was playing in the garden.
-    </textarea
-        >
+        ></textarea>
       </div>
 
       <button type="submit">Enviar</button>
+      <button type="reset">Resetar</button>
     </fieldset>
   </form>
 </template>
@@ -92,11 +99,7 @@ export default {
   methods: {
     sendForm(e) {
       e.preventDefault();
-      console.log("aqui e", e.target);
-
       const formData = new FormData(e.target);
-      console.log("aqui formData", formData);
-
       const formObject = Object.fromEntries(formData);
       console.log("aqui formObject", formObject);
     },
@@ -134,37 +137,47 @@ export default {
 
 <style scoped>
 form {
+  width: 100%;
+  max-width: 50ch;
   fieldset {
     display: grid;
     gap: 10px;
+    border: none;
     div {
       display: grid;
+      gap: 3px;
     }
   }
 
   input,
   select,
   textarea {
-    outline: 2px solid;
+    outline: 2px solid var(--neutral-color-80);
     border-radius: 5px;
     padding: 5px 10px;
-    outline-color: grey;
+    border: none;
+    background: #fff;
   }
   input:not(:placeholder-shown):valid,
   textarea:not(:placeholder-shown):valid,
   select:not(:placeholder-shown):valid {
-    outline-color: green;
+    outline-color: var(--accent-color-60);
   }
   input:not(:placeholder-shown):invalid,
   textarea:not(:placeholder-shown):invalid,
   select:not(:placeholder-shown):invalid {
-    outline-color: red;
+    outline-color: var(--attention-color-60);
   }
 
   input:focus:invalid,
   textarea:focus:invalid,
   select:focus:invalid {
-    outline-color: grey;
+    outline-color: var(--accent-color-70);
+  }
+
+  input[type="range"],
+  input[type="checkbox"] {
+    outline: none;
   }
 }
 </style>
