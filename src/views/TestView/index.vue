@@ -137,6 +137,15 @@ export default {
 
 <style scoped>
 form {
+
+  --app-color: purple;
+  --neutral-color: grey;
+  --success-color: green;
+  --error-color: red;
+  --basic-color: blue;
+
+  accent-color: var(--app-color);
+  caret-color:var(--app-color);
   width: 100%;
   max-width: 50ch;
   fieldset {
@@ -152,7 +161,7 @@ form {
   input,
   select,
   textarea {
-    outline: 2px solid var(--neutral-color-80);
+      outline: 2px solid var(--app-color);
     border-radius: 5px;
     padding: 5px 10px;
     border: none;
@@ -161,18 +170,18 @@ form {
   input:not(:placeholder-shown):valid,
   textarea:not(:placeholder-shown):valid,
   select:not(:placeholder-shown):valid {
-    outline-color: var(--accent-color-60);
+    outline-color: var(--success-color);
   }
   input:not(:placeholder-shown):invalid,
   textarea:not(:placeholder-shown):invalid,
   select:not(:placeholder-shown):invalid {
-    outline-color: var(--attention-color-60);
+    outline-color: var(--basic-color);
   }
 
   input:focus:invalid,
   textarea:focus:invalid,
   select:focus:invalid {
-    outline-color: var(--accent-color-70);
+    outline-color: var(--error-color);
   }
 
   input[type="range"],
