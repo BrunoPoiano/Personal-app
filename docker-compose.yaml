@@ -1,11 +1,8 @@
+
 services:
-  app-exercise:
+  personal-app:
     build: .
     ports:
-      - "3000:5173"
-    command: npm run dev
-    volumes:
-      - .:/usr/src/app
-    container_name: app-exercise
+      - "8080:8080"
+    container_name: personal-app  
     restart: unless-stopped
-    network_mode: bridge

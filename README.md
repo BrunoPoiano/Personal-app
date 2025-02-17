@@ -1,4 +1,4 @@
-# exercise-app
+# Personal app
 
 ## Project Setup
 
